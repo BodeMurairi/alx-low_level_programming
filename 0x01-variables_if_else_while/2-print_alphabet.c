@@ -1,7 +1,10 @@
-// Online C compiler to run C program online
 #include <stdio.h>
-
-int main() 
+/**
+ * main - main block
+ * Description: Use `putchar` function to print the alphabet in lowercase.
+ * Return: 0
+ */
+int main(void) 
 {
     char alphabet = 'a';
     while (alphabet <= 'z')
