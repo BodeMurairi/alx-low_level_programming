@@ -1,35 +1,30 @@
-#include <stdlib.h>
-#include <string.h>
-#include <stdio.h>
 #include "lists.h"
+#include <stdlib.h>
 
 /**
- * main - check the code
+ * pop_listint - function that deletes the head node of a listint_t,
+ * linked list.
+ * @head: pointer to pointer to the head of linked list.
  *
- * Return: Always 0.
+ * Make sure there is no memory leaks.
+ *
+ * Return:  and returns the head node’s data (n) or 0 if list is empty.
  */
-int main(void)
-{
-	listint_t *head;
-	int n;
 
-	head = NULL;
-	add_nodeint_end(&head, 0);
-	add_nodeint_end(&head, 1);
-	add_nodeint_end(&head, 2);
-	add_nodeint_end(&head, 3);
-	add_nodeint_end(&head, 4);
-	add_nodeint_end(&head, 98);
-	add_nodeint_end(&head, 402);
-	add_nodeint_end(&head, 1024);
-	print_listint(head);
-	n = pop_listint(&head);
-	printf("- %d\n", n);
-	print_listint(head);
-	n = pop_listint(&head);
-	printf("- %d\n", n);
-	print_listint(head);
-	free_listint2(&head);
-	printf("%p\n", (void *)head);
-	return (0);
+int pop_listint(listint_t **head)
+{
+	listint_t *temp_variable; /* keep track of current head */
+	int data = 0;
+
+    /* if there is no list */
+	if (head == NULL || *head == NULL)
+		return (0);
+	temp_variable = *head; /* stores the pointer to temp_variable head */
+    /* access the field n of temp_var and assign it to data */
+	data = temp_variable->n;
+    /* make the value at head be the value of head at next */
+	*head = (*head)->next;
+    /* free the temp var */
+	free(temp_variable);
+	return (data);
 }
